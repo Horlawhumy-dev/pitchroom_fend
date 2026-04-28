@@ -11,7 +11,6 @@ import {
   ArrowLeft,
   AlertCircle,
   Brain,
-  MessageSquare,
   TrendingDown,
   Activity
 } from "lucide-react";

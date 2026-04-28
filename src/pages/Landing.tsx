@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Layout } from "@/layouts/Layout";
-import { Shield, BarChart3, Zap, Play } from "lucide-react";
+import { Shield, BarChart3, Zap, Play, FileText } from "lucide-react";
 import { motion } from "framer-motion";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -159,7 +159,7 @@ const Landing = () => {
         </section>
 
         {/* Features Section */}
-        <section className="container mx-auto px-4 max-w-6xl grid md:grid-cols-3 gap-8">
+        <section className="container mx-auto px-4 max-w-6xl grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           <FeatureCard 
             icon={<Zap className="w-6 h-6 text-brand-blue" />}
             title="Real-time AI Feedback"
@@ -177,6 +177,13 @@ const Landing = () => {
             title="Deep Performance Analytics"
             description="Receive detailed post-pitch reports with transcriptions, sentiment analysis, and action items for improvement."
             delay={0.3}
+          />
+          <FeatureCard 
+            icon={<FileText className="w-6 h-6 text-brand-blue" />}
+            title="AI Governance Foundations"
+            description="Explore our commitment to ethical AI, transparency, and accountability standards."
+            delay={0.4}
+            link="/ai-governance-foundations"
           />
         </section>
 
@@ -213,7 +220,7 @@ const Landing = () => {
   );
 };
 
-const FeatureCard = ({ icon, title, description, delay }: { icon: React.ReactNode, title: string, description: string, delay: number }) => (
+const FeatureCard = ({ icon, title, description, delay, link }: { icon: React.ReactNode, title: string, description: string, delay: number, link?: string }) => (
   <motion.div 
     whileInView={{ opacity: 1, y: 0 }}
     initial={{ opacity: 0, y: 20 }}
@@ -227,7 +234,15 @@ const FeatureCard = ({ icon, title, description, delay }: { icon: React.ReactNod
     <h3 className="text-xl font-bold text-brand-indigo">{title}</h3>
     <p className="text-brand-gray/70 leading-relaxed text-sm">{description}</p>
     <div className="mt-auto group-hover:text-brand-blue transition-colors flex items-center text-sm font-semibold cursor-pointer">
-      Learn more <span className="ml-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">→</span>
+      {link ? (
+        <Link to={link} className="flex items-center">
+          Learn more <span className="ml-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">→</span>
+        </Link>
+      ) : (
+        <>
+          Learn more <span className="ml-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">→</span>
+        </>
+      )}
     </div>
   </motion.div>
 );
